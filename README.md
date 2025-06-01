@@ -1,11 +1,18 @@
 # Quickenchant
 Are you tired of enchanting your items one enchant after another, one by one?  
 Me too thats why i created this mod!
+
 ## Features
 
 - Automatic enchants for all you items using /quickenchant
 - customizable delay to prevent being kicked
 - an "Incompatible" mode, where every Incompatible enchant will be applied (if possible)
+
+## Usage
+you can just type /quickenchant {item}  
+but to use all features, type:  
+/quickenchant {item_name} {delay in second (only full numbers)} allowIncompatible
+
 ## FAQ
 
 #### How do i install this?
