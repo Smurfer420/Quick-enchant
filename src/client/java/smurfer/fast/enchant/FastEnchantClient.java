@@ -42,35 +42,75 @@ public class FastEnchantClient implements ClientModInitializer {
 										.executes(ctx -> {
 											String item = StringArgumentType.getString(ctx, "item");
 											int delay = IntegerArgumentType.getInteger(ctx, "delay");
-											return applyEnchantments(item, delay, true);
+											return applyEnchantments(item, delay, true, true);
 										}))
 								.executes(ctx -> {
 									String item = StringArgumentType.getString(ctx, "item");
 									int delay = IntegerArgumentType.getInteger(ctx, "delay");
-									return applyEnchantments(item, delay, false);
+									return applyEnchantments(item, delay, false, true);
 								}))
 						.executes(ctx -> {
 							String item = StringArgumentType.getString(ctx, "item");
-							return applyEnchantments(item, 1, false);
+							return applyEnchantments(item, 1, false, true);
+						})
+				)
+		);
+
+		dispatcher.register(ClientCommandManager.literal("fastenchant")
+				.then(ClientCommandManager.argument("item", StringArgumentType.word())
+						.suggests((context, builder) -> {
+							String[] items = new String[]{
+									"boots", "leggings", "chestplate", "helmet", "sword", "axe", "pickaxe", "shovel", "hoe",
+									"shear", "shears", "mace", "bow", "crossbow", "trident", "basic", "shield", "flint", "elytra"
+							};
+							for (String item : items) {
+								builder.suggest(item);
+							}
+							return builder.buildFuture();
+						})
+						.then(ClientCommandManager.argument("delay", IntegerArgumentType.integer(0))
+								.then(ClientCommandManager.literal("allowIncompatible")
+										.executes(ctx -> {
+											String item = StringArgumentType.getString(ctx, "item");
+											int delay = IntegerArgumentType.getInteger(ctx, "delay");
+											return applyEnchantments(item, delay, true, false);
+										}))
+								.executes(ctx -> {
+									String item = StringArgumentType.getString(ctx, "item");
+									int delay = IntegerArgumentType.getInteger(ctx, "delay");
+									return applyEnchantments(item, delay, false, false);
+								}))
+						.executes(ctx -> {
+							String item = StringArgumentType.getString(ctx, "item");
+							return applyEnchantments(item, 1, false, false);
 						})
 				)
 		);
 	}
 
-	private int applyEnchantments(String itemType, int delaySeconds, boolean allowIncompatible) {
+	private int applyEnchantments(String itemType, int delaySeconds, boolean allowIncompatible, boolean useSelector) {
 		MinecraftClient client = MinecraftClient.getInstance();
 		if (client.player == null || client.getNetworkHandler() == null) {
 			return 0;
 		}
 
-		String[] commands = getEnchantCommands(itemType.toLowerCase());
+		String[] baseCommands = getEnchantCommands(itemType.toLowerCase());
 		if (!allowIncompatible) {
-			commands = filterIncompatible(commands);
+			baseCommands = filterIncompatible(baseCommands);
 		}
 
-		if (commands.length == 0) {
+		if (baseCommands.length == 0) {
 			client.player.sendMessage(Text.literal("Invalid or empty enchant set for: " + itemType), false);
 			return 0;
+		}
+
+		String[] commands = new String[baseCommands.length];
+		for (int i = 0; i < baseCommands.length; i++) {
+			if (useSelector) {
+				commands[i] = baseCommands[i];
+			} else {
+				commands[i] = baseCommands[i].replace(" @s ", " ");
+			}
 		}
 
 		for (int i = 0; i < commands.length; i++) {
