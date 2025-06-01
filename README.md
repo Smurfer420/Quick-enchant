@@ -17,7 +17,7 @@ but to use all features, type:
 
 #### How do i install this?
 
-1: Download the [Quick_Enchants.jar](https://github.com/Smurfer420/Quick-enchant/releases) file from this repo  
+1: Download the Quick_Enchants.jar file from this repo  
 2: Download the [fabric loader](https://fabricmc.net/use/installer/)  
 3: Open the fabric loader, choose minecraft 1.21, and press install  
 4: drag the Quick_enchants.jar file to your mods folder  
@@ -34,7 +34,7 @@ No, you can NOT sell any copies of this mod, no matter if modified, or not.
 
 #### How can i modify this mod for my own uses?
 
-Download the [source code](https://github.com/Smurfer420/Quick-enchant/archive/refs/heads/main.zip) from this repo, extract the folder, and open this project in your desired code editor (but [Intellij](jetbrains.com/idea/download) recommended)
+Download the source code from this repo, extract the folder, and open this project in your desired code editor (but [Intellij](jetbrains.com/idea/download) recommended)
 ## Authors
 
 - Just me, Smurfer420
@@ -51,7 +51,7 @@ This mod is licensed under the Creative Commons Attribution-NonCommercial 4.0 In
 
 You must:
 - Credit me
-You may:
+  You may:
 - Use, modify, and share it for non-commercial purposes.
-You can't:
+  You can't:
 - Sell the code, or any modified versions of it
