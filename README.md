@@ -12,6 +12,7 @@ Me too thats why i created this mod!
 you can just type /quickenchant {item}  
 but to use all features, type:  
 /quickenchant {item_name} {delay in second (only full numbers)} allowIncompatible
+or use /fastenchant if your server uses a plugin for /enchant. 
 
 ## FAQ
 
@@ -19,7 +20,7 @@ but to use all features, type:
 
 1: Download the Quick_Enchants.jar file from this repo  
 2: Download the [fabric loader](https://fabricmc.net/use/installer/)  
-3: Open the fabric loader, choose minecraft 1.21, and press install  
+3: Open the fabric loader, choose minecraft 1.21(.4), and press install  
 4: drag the Quick_enchants.jar file to your mods folder  
 5: start the game, using the right profile, and enjoy!
 
