@@ -52,7 +52,9 @@ This mod is licensed under the Creative Commons Attribution-NonCommercial 4.0 In
 
 You must:
 - Credit me
-  You may:
+
+You may:
 - Use, modify, and share it for non-commercial purposes.
-  You can't:
+
+You can't:
 - Sell the code, or any modified versions of it
